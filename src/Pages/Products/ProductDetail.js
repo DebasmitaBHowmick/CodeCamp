@@ -1,12 +1,12 @@
 import UseTitle from "../../hooks/UseTitle";
-
-import { useEffect, useState } from "react"
+import { toast } from "react-toastify";
 import Ratings from "./Ratings";
+import { useEffect, useState } from "react"
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { removeCart, AddToCart } from "../../redux/CartListSlice";
 import { getProduct } from "../../services";
-import { toast } from "react-toastify";
+
 
 
 const ProductDetail = () => {
