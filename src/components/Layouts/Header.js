@@ -29,6 +29,7 @@ if (darkMode) {
 
 const [showSearch, setShowSearch] = useState(false);
 const [dropdown, setDropDown] = useState(false);
+const [hidden, setHidden] = useState(true);
 
 //to add the accesstoken
 const token = JSON.parse(sessionStorage.getItem("token"))
@@ -44,13 +45,53 @@ return (
                 <img src={Logo} className="h-8" alt="codecamp Logo" />
                 <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">CodeCamp</span>
             </Link>
-            <button data-collapse-toggle="navbar-dropdown" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" 
+
+            {/* For phone */}
+            <button onClick={() => setHidden(!hidden)}data-collapse-toggle="navbar-dropdown" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" 
             aria-controls="navbar-dropdown" aria-expanded="false">
                 <span className="sr-only">Open main menu</span>
                 <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15"/>
                 </svg>
             </button>
+
+
+          {/* Mobile Menu */}
+        <div className={`${hidden ? "hidden" : "block"} w-full md:hidden`} id="navbar-dropdown">
+          <ul className="flex flex-col font-medium p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+
+    {/* Profile */}
+    <li>
+      <span type="button"
+        onClick={() => setDropDown(!dropdown)} className={`${dropdown ? activeClass : inActiveClass} cursor-pointer text-2xl bi bi-person-circle relative`}
+      ></span> {dropdown && (token ? <LoggedIn setDropDown={setDropDown}/> : <LoggedOut setDropDown={setDropDown}/>)} 
+    </li>
+
+    {/* Search */}
+    <li type="button" onClick={() => setShowSearch(!showSearch)}>
+      <span className={`${showSearch ? activeClass : inActiveClass} bi bi-search`}></span>
+    </li>
+
+    {/* Cart */}
+    <li>
+      <NavLink
+        to="/cart"
+        className={({ isActive }) =>`${isActive ? activeClass : inActiveClass} text-lg bi bi-cart-fill relative`}
+      ><span className="text-white text-sm absolute -top-1 left-2.5 bg-rose-500 px-1 rounded-full">
+          {cartState.length}
+        </span>
+      </NavLink>
+    </li>
+
+    {/* Dark/Light Mode Toggle */}
+    <li>
+      <button onClick={() => setDarkMode(!darkMode)}
+        className={ darkMode ? "text-white cursor-pointer round bi bi-brightness-high" : "bi bi-moon-stars"}></button>
+    </li>
+  </ul>
+</div>
+
+            {/* For Desktop */}
             <div className="hidden w-full md:block md:w-auto" id="navbar-dropdown">
               <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                 
