@@ -1,58 +1,66 @@
 import { toast } from "react-toastify";
 
-export async function register(authDetail) {
-    const RequestOpt= {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(authDetail),
-      };
-    try {
-     const response = await fetch(`${process.env.REACT_APP_HOST}/660/register`,RequestOpt)
-    const data = await response.json();
-        console.log("Response from backend:", data);
+// Get backend base URL safely
+const BASE_URL = process.env.REACT_APP_HOST.replace(/\/$/, "");
 
-        if(data.accessToken){
-            sessionStorage.setItem("ccid", JSON.stringify(data.user.id))
-            sessionStorage.setItem("token", JSON.stringify(data.accessToken)) } else{
-            toast.error(data, { type: "error" });
-        };
-      return data;    
+// ---------- Register ----------
+export async function register(authDetail) {
+  try {
+    const response = await fetch(`${BASE_URL}/register`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(authDetail),
+    });
+
+    const data = await response.json();
+    console.log("Response from backend:", data);
+
+    if (data.accessToken) {
+      sessionStorage.setItem("ccid", JSON.stringify(data.user.id));
+      sessionStorage.setItem("token", JSON.stringify(data.accessToken));
+      toast.success("Registered successfully!");
+    } else {
+      toast.error(data, { type: "error" });
+    }
+
+    return data;
   } catch (error) {
     console.error("Error during registration:", error);
-    toast("Something went wrong. Please try again.", { type: "error" });
-    return null;  // return something in case of error
+    toast.error("Something went wrong. Please try again.");
+    return null;
   }
-};
+}
 
-export async function login (authDetail){
-const RequestLogin= {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(authDetail),};
-      try {
-         const response = await fetch(`${process.env.REACT_APP_HOST}/660/login`,RequestLogin)
-           const data = await response.json();
-            //console.log("Response from backend:", data);
-    
-          if(data.accessToken){
-                sessionStorage.setItem("ccid", JSON.stringify(data.user.id))
-                sessionStorage.setItem("token", JSON.stringify(data.accessToken))
-                toast.success("Logged in successfully");
-            }
-            else{
-                toast.error(data, { type: "error" });
-            }
+// ---------- Login ----------
+export async function login(authDetail) {
+  try {
+    const response = await fetch(`${BASE_URL}/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(authDetail),
+    });
 
-            return data;
-      } catch (error) {
-        console.error("Error during registration:", error);
-        toast("Something went wrong. Please try again.", { type: "error" });
+    const data = await response.json();
 
-        return null;
-      }
-};
+    if (data.accessToken) {
+      sessionStorage.setItem("ccid", JSON.stringify(data.user.id));
+      sessionStorage.setItem("token", JSON.stringify(data.accessToken));
+      toast.success("Logged in successfully!");
+    } else {
+      toast.error(data, { type: "error" });
+    }
 
-export function logout(){
-    sessionStorage.removeItem("token");
-    sessionStorage.removeItem("cbid");
+    return data;
+  } catch (error) {
+    console.error("Error during login:", error);
+    toast.error("Something went wrong. Please try again.");
+    return null;
+  }
+}
+
+// ---------- Logout ----------
+export function logout() {
+  sessionStorage.removeItem("token");
+  sessionStorage.removeItem("ccid"); // fixed typo from "cbid" → "ccid"
+  toast.info("Logged out successfully");
 }
