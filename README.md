@@ -1,70 +1,74 @@
-# Getting Started with Create React App
+# 🛍️ E-Commerce Web App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A fully functional e-commerce web application where users can browse products, add items to cart, and proceed with checkout.  
+Built with **React** (frontend) and backend created by myself using **JSON Server with JWT authentication**.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🚀 Features
+- 🔐 User authentication with JWT (Login / Register / Protected routes)
+- 🛒 Add to cart, remove from cart, and manage quantity with React-redux state management
+- 💳 Checkout flow (mock / integrated payment)
+- 📱 Responsive design (mobile-first)
+- 🔎 Product search and category filters with React-redux state management
+- 📦 Admin panel for adding/removing products (optional)
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🛠️ Tech Stack
+- **Frontend:** React, React-redux,TailwindCSS (or CSS/Bootstrap)
+- **Backend:** JSON Server + JWT Authentication  
+**Database:** Local JSON file (`data/db.json`)
+- **Deployment:** Netlify
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## 📸 Screenshots
+### Homepage
+![Home](<img width="1880" height="868" alt="image" src="https://github.com/user-attachments/assets/520d513c-6b4d-4f4c-ac16-9b91c5c239c1" />)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+### Product Page
+![Product Screenshot]([4](https://github.com/user-attachments/assets/4920512f-5ec9-4be1-87d9-af7ca52b259e)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Cart
+![Cart Screenshot](![6](https://github.com/user-attachments/assets/8b885112-83f1-4f2b-a5f9-e392a52d70f1)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Login / Register
+![Auth](![3](https://github.com/user-attachments/assets/0cb3cb5c-bd3f-403b-8d9c-a468c5614081)
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🔗 Live Demo
+👉 [Frontend]: [View Demo](https://codecamp-ebook.netlify.app/)
+ 👉  [Backend API]: [https://codecmp-mock-server.onrender.com/products]
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## ⚙️ Installation / Setup
+Clone the project and install dependencies:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+git clone [https://github.com/DebasmitaBHowmick/CodeCamp.git]
+cd CodeCamp
+npm install
+npm start
 
-## Learn More
+## 🤝 Contributing
+Contributions, issues, and feature requests are welcome!  
+Feel free to fork this repo and submit a pull request.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🙌 Credits
+- Built by [Debasmita Bhwomick](https://github.com/DebasmitaBHowmick)  
+- Inspired by [Udemy & youtube]
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 📄 License
+This project is licensed under the **MIT License**.  
+You are free to use, modify, and distribute this project with attribution.  
+See the [LICENSE](./LICENSE) file for details.
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
