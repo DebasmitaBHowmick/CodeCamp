@@ -7,7 +7,7 @@ export async function register(authDetail) {
         body: JSON.stringify(authDetail),
       };
     try {
-     const response = await fetch(`${process.env.REACT_APP_HOST}/register`,RequestOpt)
+     const response = await fetch(`${process.env.REACT_APP_HOST}/660/register`,RequestOpt)
     const data = await response.json();
         console.log("Response from backend:", data);
 
@@ -30,7 +30,7 @@ const RequestLogin= {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(authDetail),};
       try {
-         const response = await fetch(`${process.env.REACT_APP_HOST}/login`,RequestLogin)
+         const response = await fetch(`${process.env.REACT_APP_HOST}/660/login`,RequestLogin)
            const data = await response.json();
             //console.log("Response from backend:", data);
     
