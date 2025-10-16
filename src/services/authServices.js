@@ -12,22 +12,25 @@ export async function register(authDetail) {
       body: JSON.stringify(authDetail),
     });
 
+    // Always attempt to parse JSON
     const data = await response.json();
-    console.log("Response from backend:", data);
 
-    if (data.accessToken) {
+    if (response.ok && data.accessToken) {
+      // Store token and user ID
       sessionStorage.setItem("ccid", JSON.stringify(data.user.id));
       sessionStorage.setItem("token", JSON.stringify(data.accessToken));
       toast.success("Registered successfully!");
     } else {
-      toast.error(data, { type: "error" });
+      // If backend returns an error message
+      const message = data.message || JSON.stringify(data);
+      toast.error(message, { type: "error" });
     }
 
     return data;
   } catch (error) {
     console.error("Error during registration:", error);
     toast.error("Something went wrong. Please try again.");
-    return null;
+    return { error: true, message: "Network or server error" };
   }
 }
 
@@ -42,19 +45,20 @@ export async function login(authDetail) {
 
     const data = await response.json();
 
-    if (data.accessToken) {
+    if (response.ok && data.accessToken) {
       sessionStorage.setItem("ccid", JSON.stringify(data.user.id));
       sessionStorage.setItem("token", JSON.stringify(data.accessToken));
       toast.success("Logged in successfully!");
     } else {
-      toast.error(data, { type: "error" });
+      const message = data.message || JSON.stringify(data);
+      toast.error(message, { type: "error" });
     }
 
     return data;
   } catch (error) {
     console.error("Error during login:", error);
     toast.error("Something went wrong. Please try again.");
-    return null;
+    return { error: true, message: "Network or server error" };
   }
 }
 
@@ -64,3 +68,4 @@ export function logout() {
   sessionStorage.removeItem("ccid"); // fixed typo from "cbid" → "ccid"
   toast.info("Logged out successfully");
 }
+

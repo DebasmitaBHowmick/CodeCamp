@@ -10,7 +10,8 @@ export async function getProductList(queryTerm = "") {
       params: queryTerm ? { q: queryTerm } : {},
     });
 
-    return response.data;
+    const data = response.data;
+    return Array.isArray(data) ? data : [];
   } catch (error) {
     console.error("Error fetching product list:", error);
     throw error;
@@ -21,10 +22,13 @@ export async function getProductList(queryTerm = "") {
 export async function getProduct(id) {
   try {
     const response = await axios.get(`${BASE_URL}/api/products/${id}`);
-    return response.data;
+    const data = response.data;
+    return Array.isArray(data) ? data : [];
+
   } catch (error) {
     console.error(`Error fetching product ID ${id}:`, error);
     throw error;
+   
   }
 }
 
@@ -32,7 +36,8 @@ export async function getProduct(id) {
 export async function featuredProduct() {
   try {
     const response = await axios.get(`${BASE_URL}/api/featured_products`);
-    return response.data;
+    const data= response.data;
+    return Array.isArray(data) ? data : []
   } catch (error) {
     console.error("Error fetching featured products:", error);
     throw error;
