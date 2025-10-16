@@ -7,21 +7,21 @@ const response = await axios.get(`${process.env.REACT_APP_HOST}/products?q=${que
 if (response.status !== 200) {
       throw new Error(`Request failed: ${response.status}`);
     };
-return response;}
+return response.data;}
 
 
 
 export async function getProduct(id) {
-const response = await axios.get(`${process.env.REACT_APP_HOST}/444/products/${id}`);
+const response = await axios.get(`${process.env.REACT_APP_HOST}/products/${id}`);
 if (response.status !== 200) {
     throw new Error(`Request failed: ${response.status}`);
     };
-        return response;
+        return response.data;
 };
 
 
 export async function featuredProduct() {
-    const FeaturedURL = `${process.env.REACT_APP_HOST}/444/featured_products`;
+    const FeaturedURL = `${process.env.REACT_APP_HOST}/featured_products`;
     const response = await fetch(FeaturedURL);
     const data = await response.json();
     if (!response.ok) {

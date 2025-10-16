@@ -12,7 +12,7 @@ const requestOpt= {method:"GET",
                 headers: {"Content-Type": "application/json",
                 Authorization: `Bearer ${token}`}
             }
-            const response = await fetch(`${process.env.REACT_APP_HOST}/600/users/${ccid}`, 
+            const response = await fetch(`${process.env.REACT_APP_HOST}/users/${ccid}`, 
              requestOpt);
 
             const data = await response.json()
@@ -29,7 +29,7 @@ const token = JSON.parse(sessionStorage.getItem("token"));
                 return [];
                 }
     
-                const response = await fetch(`${process.env.REACT_APP_HOST}/660/orders`, 
+                const response = await fetch(`${process.env.REACT_APP_HOST}/orders`, 
                     {method:"GET",
                     headers: {"Content-Type": "application/json",
                     Authorization: `Bearer ${token}`}
@@ -65,7 +65,7 @@ const token = JSON.parse(sessionStorage.getItem("token"));
             payment_id: Math.floor(Math.random()*10000000)
         }
     }
-     const response = await fetch(`${process.env.REACT_APP_HOST}/660/orders`, {
+     const response = await fetch(`${process.env.REACT_APP_HOST}/orders`, {
             method: "POST",
             headers: {"Content-Type": "application/json",
                 Authorization: `Bearer ${token}`},
