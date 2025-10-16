@@ -1,31 +1,40 @@
 import axios from "axios";
 
+// Remove trailing slash from env variable (safe for local & production)
+const BASE_URL = process.env.REACT_APP_HOST.replace(/\/$/, "");
 
-export async function getProductList(queryTerm) {
+// ---------- Products ----------
+export async function getProductList(queryTerm = "") {
+  try {
+    const response = await axios.get(`${BASE_URL}/api/products`, {
+      params: queryTerm ? { q: queryTerm } : {},
+    });
 
-const response = await axios.get(`${process.env.REACT_APP_HOST}/api/products?q=${queryTerm ? queryTerm : ""}`);
-if (response.status !== 200) {
-      throw new Error(`Request failed: ${response.status}`);
-    };
-return response.data;}
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching product list:", error);
+    throw error;
+  }
+}
 
-
-
+// Get single product by ID
 export async function getProduct(id) {
-const response = await axios.get(`${process.env.REACT_APP_HOST}/api/products/${id}`);
-if (response.status !== 200) {
-    throw new Error(`Request failed: ${response.status}`);
-    };
-        return response.data;
-};
+  try {
+    const response = await axios.get(`${BASE_URL}/api/products/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(`Error fetching product ID ${id}:`, error);
+    throw error;
+  }
+}
 
-
+// ---------- Featured Products ----------
 export async function featuredProduct() {
-    const FeaturedURL = `${process.env.REACT_APP_HOST}/api/feaatured_products`;
-    const response = await fetch(FeaturedURL);
-    const data = await response.json();
-    if (!response.ok) {
-        throw new Error({message: response.statusText, status: response.status})
-    }
-    return data;
-};
+  try {
+    const response = await axios.get(`${BASE_URL}/api/featured_products`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching featured products:", error);
+    throw error;
+  }
+}
