@@ -34,7 +34,7 @@ useEffect(()=> {
   return ( 
      <section className="my-20">
       {loading ? (
-        <p className='darka: text-white text-5xl text-center'>...Loading our best products</p>
+        <p className='dark: text-white text-5xl text-center'>...Loading our best products</p>
       ) : products.length === 0 ? (
         <p className="text-center text-gray-500">
           No featured products available.

@@ -106,7 +106,7 @@ return (
                     </span>
                 </li>
                 <li>
-                  <NavLink to="/cart" className={({ isActive }) => `${isActive ? activeClass :  inActiveClass}text-lg bi bi-cart-fill relative`}>
+                  <NavLink to="/cart" className={({ isActive }) => `${isActive ? activeClass :  inActiveClass} text-lg bi bi-cart-fill relative`}>
                   <span className="text-white text-sm absolute -top-1 left-2.5 bg-rose-500 px-1 rounded-full">{cartState.length}</span>
                   </NavLink>
                 </li>
