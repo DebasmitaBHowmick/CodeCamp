@@ -13,16 +13,18 @@ const ProductDetail = () => {
   const {id} = useParams()
   const [product, setProduct] = useState({});
   const [inCart, setInCart] = useState(false);
-  UseTitle(product.name);
+
+  UseTitle(product?.name);
 
   useEffect(()=> {
      async function fetchProducts() {
         try {
-          const response = await getProduct(id)
-          setProduct(response.data)
+          const productData = await getProduct(id);
+          // console.log(productData)
+          setProduct(productData)
         } catch (error) {
           const errorMsg= error.response?.data?.message || error.message ||
-             "Something went wrong ❌";
+             "Something went wrong!";
           toast.error(errorMsg);
         }
       }
@@ -40,7 +42,7 @@ useEffect(()=> {
     }else{
         setInCart(false)
     }
-},[cartState, product.id])
+},[cartState, product?.id])
   
   return (
     <main>
@@ -50,24 +52,24 @@ useEffect(()=> {
           
           <div className="flex flex-wrap justify-around">
             <div className="max-w-xl my-3">
-              <img className="rounded" src={product.poster || product.image_local} alt={product.name} />
+              <img className="rounded" src={product?.poster || product?.image_local} alt={product?.name} />
             </div>
             <div className="max-w-xl my-3">
               <p className="text-3xl font-bold text-gray-900 dark:text-slate-200">
                 <span className="mr-1">$</span>
-                <span className="">{product.price}</span>
+                <span className="">{product?.price}</span>
               </p>
               <div className="my-3"> 
                 <span>
-                  <Ratings rating={product.rating}/>
+                  <Ratings rating={product?.rating}/>
                 </span>
               </div>
               <div className="my-4 select-none">
-                {product.best_seller && <span className="font-semibold text-amber-500 border bg-amber-50 rounded-lg px-3 py-1 mr-2">BEST SELLER</span>}   
-               {product.in_stock ? (<span className="font-semibold text-emerald-600	border bg-slate-100 rounded-lg px-3 py-1 mr-2">INSTOCK</span>) 
+                {product?.best_seller && <span className="font-semibold text-amber-500 border bg-amber-50 rounded-lg px-3 py-1 mr-2">BEST SELLER</span>}   
+               {product.in_stock ? (<span className="font-semibold text-emerald-600	border bg-slate-100 rounded-lg px-3 py-1 mr-2"> INSTOCK</span>) 
                : (<span className="font-semibold text-rose-700 border bg-slate-100 rounded-lg px-3 py-1 mr-2">OUT OF STOCK</span>)} 
               
-                <span className="font-semibold text-blue-500 border bg-slate-100 rounded-lg px-3 py-1 mr-2">{product.size}</span>
+                <span className="font-semibold text-blue-500 border bg-slate-100 rounded-lg px-3 py-1 mr-2">{product?.size}</span>
               </div>
               <div className="my-3">
              {inCart ? (<button onClick= {()=> dispatch(removeCart(product.id))} className={`inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-800 ${product.in_stock ? "" : "cursor-not-allowed"}`} disabled={!product.in_stock}>Remove <i className="ml-1 bi bi-trash3"></i></button> )
@@ -75,7 +77,7 @@ useEffect(()=> {
 
               </div>
               <p className="text-lg text-gray-900 dark:text-slate-200">
-                {product.long_description}
+                {product?.long_description}
               </p>
             </div>
           </div>

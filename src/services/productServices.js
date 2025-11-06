@@ -6,12 +6,13 @@ const BASE_URL = process.env.REACT_APP_HOST.replace(/\/$/, "");
 // ---------- Products ----------
 export async function getProductList(queryTerm = "") {
   try {
-    const response = await axios.get(`${BASE_URL}/api/products`, {
+    const response = await axios.get(`${BASE_URL}/products`, {
       params: queryTerm ? { q: queryTerm } : {},
     });
 
-    const data = response.data;
-    return Array.isArray(data) ? data : [];
+    return response.data
+    // const data = response.data;
+    // return Array.isArray(data) ? data : [];
   } catch (error) {
     console.error("Error fetching product list:", error);
     throw error;
@@ -21,9 +22,10 @@ export async function getProductList(queryTerm = "") {
 // Get single product by ID
 export async function getProduct(id) {
   try {
-    const response = await axios.get(`${BASE_URL}/api/products/${id}`);
-    const data = response.data;
-    return Array.isArray(data) ? data : [];
+    const response = await axios.get(`${BASE_URL}/products/${id}`);
+    return response.data;
+    // const data = response.data;
+    // return Array.isArray(data) ? data : [];
 
   } catch (error) {
     console.error(`Error fetching product ID ${id}:`, error);
@@ -35,9 +37,9 @@ export async function getProduct(id) {
 // ---------- Featured Products ----------
 export async function featuredProduct() {
   try {
-    const response = await axios.get(`${BASE_URL}/api/featured_products`);
+    const response = await axios.get(`${BASE_URL}/featured_products`);
     const data= response.data;
-    return Array.isArray(data) ? data : []
+    return data;
   } catch (error) {
     console.error("Error fetching featured products:", error);
     throw error;

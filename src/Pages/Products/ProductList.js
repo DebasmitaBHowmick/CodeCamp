@@ -28,8 +28,8 @@ const queryTerm = new URLSearchParams(search).get('q')
 useEffect(()=> {
   async function fetchProducts() {
     try {
-      const response = await getProductList(queryTerm)
-       dispatch(setProducts(response.data))
+      const data = await getProductList(queryTerm)
+       dispatch(setProducts(data))
     } catch (error) {
       const errorMsg= error.response?.data?.message || error.message ||
       "Something went wrong ❌";
