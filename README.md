@@ -43,7 +43,7 @@ Built with **React** (frontend) and backend created by myself using **JSON Serve
 
 ## 🔗 Live Demo
 👉 [Frontend]: [View Demo](https://codecamp-ebook.netlify.app/)
- 👉  [Backend API]: [https://codecmp-mock-server.onrender.com/products]
+ 👉  [Backend API]: [https://e-commerce-cgk2.onrender.com/]
 ---
 
 ## ⚙️ Installation / Setup
